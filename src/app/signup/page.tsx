@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 
 
 function Signup() {
-  const router = useRouter();
+  // const router = useRouter();
   const [user,setuser] = useState({
       username:"",
       email:"",
@@ -20,8 +20,10 @@ function Signup() {
       try {
         setLoading(true);
         const res = await axios.post('/api/users/signup',user);
-        if(res) toast.success('Signin Successfully...');
-        router.push('/signin');
+        // console.log(res)
+        if(res) toast.success(res.data.message);
+        
+        // router.push('/signin');
       } catch (error) {
         // console.log("Signup Failed");
         toast.error('Signup Failed');

@@ -1,11 +1,10 @@
-import { redirect } from 'next/dist/server/api-utils';
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  const publisPaths = path==='/signin' || path==='/signup'
+  const publisPaths = path==='/signin' || path==='/signup' || path==='/verifyemail'
   const token = request.cookies.get('token')?.value || '';
 
   if(publisPaths && token){
@@ -22,5 +21,7 @@ export const config = {
     '/profile/:path*',
     '/signin',
     '/signup',
+    '/verifyemail',
+    '/resetpassword'
   ],
 }
